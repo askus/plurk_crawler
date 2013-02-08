@@ -2,6 +2,7 @@ import sys
 from plurk_oauth.PlurkAPI import PlurkAPI
 import json
 import socket
+from crawler import plurk_authorize , get_api_result 
 
 def xstr( inpt ):
 	#if isinstance( inpt, str):
@@ -19,19 +20,18 @@ def xstr( inpt ):
 		return "|".join( inpt)  
 	return inpt.encode("utf8").replace( "\r","").replace("\n", "").strip()
 
-def plurk_authorize(  ): 
-	plurk = PlurkAPI("GZpz46uhKUJv", "EWoX6KK9laSEOhtWCJt8n6xZUmvxrliq")
-	plurk.authorize("UNtfaxzZFPI2", "BXP7E9V8GVrHFWJaIDCiZ2ArXKF0xrB8")
-	return plurk	
+#def plurk_authorize(  ): 
+#	plurk = PlurkAPI("GZpz46uhKUJv", "EWoX6KK9laSEOhtWCJt8n6xZUmvxrliq")
+#	plurk.authorize("UNtfaxzZFPI2", "BXP7E9V8GVrHFWJaIDCiZ2ArXKF0xrB8")
+#	return plurk	
 
 # need authorization first 
-
-def get_api_result( plurk, api, param ) : 
-	try:
-		temp = plurk.callAPI( api , param )
-	except:
-		temp = None 
-	return temp 
+#def get_api_result( plurk, api, param ) : 
+#	try:
+#		temp = plurk.callAPI( api , param )
+#	except:
+#		temp = None 
+#	return temp 
 
 def get_userdata( plurk , user_id ) :
 	temp = get_api_result( plurk, "/Users/getUserData" , {"page_uid": user_id } ) 
@@ -56,7 +56,6 @@ def main( filename, output_dir  ):
 	dataset="plurk_iii"
 
 	infile = open(filename, "r")
-
 	filename_prefix= filename.split("/")[-1]
 
 	total_length = len( infile.read().split("\n") )
