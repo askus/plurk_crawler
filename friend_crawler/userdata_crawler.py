@@ -3,7 +3,6 @@ from plurk_oauth.PlurkAPI import PlurkAPI
 import json
 import socket
 
-
 def xstr( inpt ):
 	#if isinstance( inpt, str):
 	#	return inpt
@@ -53,10 +52,9 @@ def get_profile_keys( plurk   ) :
 	return get_profile( plurk, 3 ).keys() # alvin's id  
 
 
-def main( argv= sys.argv ):
+def main( filename, output_dir  ):
 	dataset="plurk_iii"
 
-	script, filename= argv
 	infile = open(filename, "r")
 
 	filename_prefix= filename.split("/")[-1]
@@ -65,7 +63,7 @@ def main( argv= sys.argv ):
 	infile.close()
 	infile = open(filename, "r")
 
-	outf = open("result/%s.user_table.txt" %(   filename_prefix ), "w") 
+	outf = open("%s/%s.user_table.txt" %(  output_dir , filename_prefix ), "w") 
 
 	plurk = plurk_authorize( ) 
 	keys = get_userdata_keys( plurk ) 
