@@ -1,5 +1,6 @@
 import friend_crawler.friend_crawler as crawler 
 import sys
+import os , os.path
 script, filename = sys.argv 
 
 output_dir = "/tmp2/r99944049/"
