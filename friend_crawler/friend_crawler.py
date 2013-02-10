@@ -57,7 +57,6 @@ def main( filename, output_dir  ):
 		user_id = long(tmp[1] ) # need repair
 		size = int( tmp[3] ) # need repair
 		friends = get_friend( plurk, user_id,size  ) 
-		print "%d: %d/ %d" %( user_id, len( friends ), size)
 
 		if friends ==None:
 			continue 
@@ -65,6 +64,7 @@ def main( filename, output_dir  ):
 			friend_id = friend_dict['id'] 
 			print >> outf, "%d\t%d" %( user_id , friend_id )
 			print >> outf, "%d\t%d" %( friend_id, user_id ) 
+		print "%d: %d/ %d" %( user_id, len( friends ), size)
 	infile.close()
 	outf.close()
 
