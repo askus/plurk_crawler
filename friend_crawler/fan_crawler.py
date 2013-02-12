@@ -44,7 +44,7 @@ def main( filename, output_dir  ):
 		tmp = l.strip().split("\t")
 		user_id = long(tmp[1] ) # need repair
 		size = int( tmp[0] ) # need repair
-		fans = get_fans( plurk, user_id,size  ) 
+		fans = get_fan( plurk, user_id,size  ) 
 
 		if fans ==None:
 			continue 
