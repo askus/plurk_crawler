@@ -3,7 +3,10 @@ CACHE_LENGTH =10
 
 def get_fan( plurk, user_id , size  ):
 	ret = list()
-	
+
+	if size == 0 :
+		return None 
+
 	for i in xrange(   (size/CACHE_LENGTH) +1 ):
 		offset = i* CACHE_LENGTH  
 		# cal expect number 
@@ -37,19 +40,18 @@ def main( filename, output_dir  ):
 		# time counting  
 		print "[%s][%.2f] %d/%d" %( filename_prefix  , ( float(i)/ float(total_length) ) , i, total_length ) 
 		i +=1 
-		# get friends  
+		# get fans  
 		tmp = l.strip().split("\t")
 		user_id = long(tmp[1] ) # need repair
 		size = int( tmp[0] ) # need repair
-		friends = g_fannd( plurk, user_id,size  ) 
+		fans = get_fans( plurk, user_id,size  ) 
 
-		if friends ==None:
+		if fans ==None:
 			continue 
-		for friend_dict in friends:
-			friend_id = friend_dict['id'] 
-			print >> outf, "%d\t%d" %( user_id , friend_id )
-			print >> outf, "%d\t%d" %( friend_id, user_id ) 
-		print "%d: %d/ %d" %( user_id, len( friends ), size)
+		for fan_dict in fans:
+			fan_id = fan_dict['id'] 
+			print >> outf, "%d\t%d" %( user_id , fan_id )
+		print "%d: %d/ %d" %( user_id, len( fans ), size)
 	infile.close()
 	outf.close()
 
